@@ -1,4 +1,4 @@
-package com.pagegroup.sendInvoice;
+package com.pagegroup.sendInvoice.config;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
