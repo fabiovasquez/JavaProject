@@ -13,13 +13,13 @@ public class ConnectionFactory {
 	private String url;
 	private String driver;
 	
-	public Connection getConnection(String country) throws SQLException {
+	public Connection axConnection(String country) throws SQLException {
 		
 
-		user = bundle.getString("sql."+country+".user");
-		password = bundle.getString("sql."+country+".password");
-		url = bundle.getString("sql."+country+".url");
-		driver = bundle.getString("sql.driver");
+		user = bundle.getString("sql_ax."+country+".user");
+		password = bundle.getString("sql_ax."+country+".password");
+		url = bundle.getString("sql_ax."+country+".url");
+		driver = bundle.getString("sql_ax.driver");
 		
 		try {
 		Class.forName(driver).newInstance();
@@ -32,5 +32,24 @@ public class ConnectionFactory {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public Connection sqlConnection()throws SQLException{
+		user = bundle.getString("sql.user");
+		password = bundle.getString("sql.password");
+		url = bundle.getString("sql.url");
+		driver = bundle.getString("sql.driver");
+		
+		try {
+			Class.forName(driver).newInstance();
+			con = DriverManager.getConnection(url,user,password);
+			return con;
+			} catch (ClassNotFoundException ex) {
+				System.err.println("Drive não encontrado");
+				ex.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
 	}
 }
